@@ -1,7 +1,7 @@
 
 import React from "react";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import AnimatedGradientText from "@/components/ui/AnimatedGradientText";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
