@@ -1,9 +1,8 @@
 
 import React from "react";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import AnimatedGradientText from "@/components/ui/AnimatedGradientText";
-import ServiceCard from "@/components/ui/ServiceCard";
 
 const Services = () => {
   const services = [
@@ -68,7 +67,35 @@ const Services = () => {
         <section className="mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {services.map((service) => (
-              <ServiceCard key={service.title} service={service} />
+              <div key={service.title} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  
+                  <div className="mb-4">
+                    <div className="flex justify-between items-baseline mb-2">
+                      <span className="text-lg font-medium text-wellness-700">{service.price}</span>
+                      <span className="text-sm text-gray-500">{service.duration}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <h4 className="text-sm font-medium mb-2">Features:</h4>
+                    <ul className="space-y-1">
+                      {service.features.map((feature, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-wellness-500 mr-2">•</span>
+                          <span className="text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-gray-100">
+                    <p className="text-sm text-gray-500">Ideal for: {service.idealFor}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </section>
