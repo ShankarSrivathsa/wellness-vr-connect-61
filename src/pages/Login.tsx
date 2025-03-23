@@ -1,6 +1,5 @@
 
 import React from "react";
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +16,9 @@ const Login = () => {
   
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Set a user flag in localStorage to indicate logged in status
+    localStorage.setItem("isLoggedIn", "true");
+    
     toast({
       title: "Login Successful",
       description: "You've been redirected to the home page.",
@@ -28,8 +30,7 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
-      <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-wellness-50 px-4 pt-24 pb-12">
+      <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-wellness-50 px-4 py-12">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold mb-2">

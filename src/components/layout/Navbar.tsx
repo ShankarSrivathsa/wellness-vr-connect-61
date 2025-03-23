@@ -1,14 +1,17 @@
 
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X, LogIn } from "lucide-react";
+import { Menu, X, LogIn, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
   const routes = [
     { name: "Home", path: "/" },
@@ -19,6 +22,31 @@ const Navbar: React.FC = () => {
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
+
+  // Check login status when component mounts
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const loginStatus = localStorage.getItem("isLoggedIn");
+      setIsLoggedIn(loginStatus === "true");
+    };
+    
+    checkLoginStatus();
+    window.addEventListener("storage", checkLoginStatus);
+    
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+    toast({
+      title: "Logged Out",
+      description: "You have been successfully logged out.",
+    });
+    navigate("/login");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,15 +108,26 @@ const Navbar: React.FC = () => {
           >
             <Link to="/booking">Book a Session</Link>
           </Button>
-          <Button 
-            asChild
-            variant="outline"
-            className="ml-2"
-          >
-            <Link to="/login">
-              <LogIn className="mr-2 h-4 w-4" /> Login
-            </Link>
-          </Button>
+          
+          {isLoggedIn ? (
+            <Button 
+              variant="outline"
+              className="ml-2"
+              onClick={handleLogout}
+            >
+              <LogOut className="mr-2 h-4 w-4" /> Logout
+            </Button>
+          ) : (
+            <Button 
+              asChild
+              variant="outline"
+              className="ml-2"
+            >
+              <Link to="/login">
+                <LogIn className="mr-2 h-4 w-4" /> Login
+              </Link>
+            </Button>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -129,15 +168,26 @@ const Navbar: React.FC = () => {
           >
             <Link to="/booking">Book a Session</Link>
           </Button>
-          <Button 
-            asChild 
-            variant="outline"
-            className="w-full"
-          >
-            <Link to="/login">
-              <LogIn className="mr-2 h-4 w-4" /> Login
-            </Link>
-          </Button>
+          
+          {isLoggedIn ? (
+            <Button 
+              variant="outline"
+              className="w-full"
+              onClick={handleLogout}
+            >
+              <LogOut className="mr-2 h-4 w-4" /> Logout
+            </Button>
+          ) : (
+            <Button 
+              asChild 
+              variant="outline"
+              className="w-full"
+            >
+              <Link to="/login">
+                <LogIn className="mr-2 h-4 w-4" /> Login
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </nav>
