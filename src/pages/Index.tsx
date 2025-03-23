@@ -6,6 +6,7 @@ import Hero from "@/components/sections/Hero";
 import Benefits from "@/components/sections/Benefits";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Testimonials from "@/components/sections/Testimonials";
+import UserWellbeing from "@/components/sections/UserWellbeing";
 import ServiceCard from "@/components/ui/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -25,6 +26,8 @@ const Index: React.FC = () => {
       <main>
         <Hero />
         <Benefits />
+        
+        <UserWellbeing />
         
         {/* Featured Services Section */}
         <section className="py-20 relative overflow-hidden">
