@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navbar: React.FC = () => {
@@ -53,9 +53,9 @@ const Navbar: React.FC = () => {
           className="text-2xl font-bold text-wellness-800 flex items-center gap-2"
         >
           <span className="w-8 h-8 rounded-full bg-gradient-to-r from-wellness-500 to-accent flex items-center justify-center text-white">
-            W
+            S
           </span>
-          <span className="hidden sm:inline">WellnessVR</span>
+          <span className="hidden sm:inline">Serapisuto</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -79,6 +79,15 @@ const Navbar: React.FC = () => {
             className="ml-4 bg-wellness-500 hover:bg-wellness-600 text-white rounded-full px-6 py-2 transition-all duration-300 shadow-md hover:shadow-lg"
           >
             <Link to="/booking">Book a Session</Link>
+          </Button>
+          <Button 
+            asChild
+            variant="outline"
+            className="ml-2"
+          >
+            <Link to="/login">
+              <LogIn className="mr-2 h-4 w-4" /> Login
+            </Link>
           </Button>
         </div>
 
@@ -119,6 +128,15 @@ const Navbar: React.FC = () => {
             className="w-full mt-4 bg-wellness-500 hover:bg-wellness-600 text-white rounded-full py-3 transition-all duration-300"
           >
             <Link to="/booking">Book a Session</Link>
+          </Button>
+          <Button 
+            asChild 
+            variant="outline"
+            className="w-full"
+          >
+            <Link to="/login">
+              <LogIn className="mr-2 h-4 w-4" /> Login
+            </Link>
           </Button>
         </div>
       </div>
