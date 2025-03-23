@@ -103,11 +103,19 @@ const WellbeingAssessment: React.FC = () => {
     navigate("/");
   };
 
+  const handleSelfAssisted = () => {
+    navigate("/blog");
+  };
+
+  const handleBookSession = () => {
+    navigate("/booking");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-wellness-50 pt-4 pb-16 px-4">
       <div className="max-w-2xl mx-auto mt-8">
         <h1 className="text-2xl font-bold text-wellness-800 mb-6 text-center">
-          Wellbeing Assessment Chat
+          Serapisuto Assessment Guide
         </h1>
         
         <Card className="mb-4">
@@ -142,31 +150,63 @@ const WellbeingAssessment: React.FC = () => {
         </Card>
         
         {assessmentComplete ? (
-          <div className="text-center">
+          <div className="text-center space-y-4">
             <Button 
               onClick={handleComplete} 
               className="bg-wellness-500 hover:bg-wellness-600"
             >
               Complete Assessment
             </Button>
+            <div className="flex justify-center space-x-4 mt-4">
+              <Button 
+                onClick={handleSelfAssisted} 
+                variant="outline"
+                className="border-wellness-500 text-wellness-600 hover:bg-wellness-50"
+              >
+                Self Assisted
+              </Button>
+              <Button 
+                onClick={handleBookSession} 
+                className="bg-wellness-500 hover:bg-wellness-600"
+              >
+                Book a Session
+              </Button>
+            </div>
           </div>
         ) : (
-          <div className="flex space-x-2">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-              disabled={isLoading}
-              className="flex-grow"
-            />
-            <Button 
-              onClick={handleSendMessage} 
-              disabled={isLoading}
-              className="bg-wellness-500 hover:bg-wellness-600"
-            >
-              Send
-            </Button>
+          <div>
+            <div className="flex space-x-2 mb-4">
+              <Input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Type your message..."
+                onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                disabled={isLoading}
+                className="flex-grow"
+              />
+              <Button 
+                onClick={handleSendMessage} 
+                disabled={isLoading}
+                className="bg-wellness-500 hover:bg-wellness-600"
+              >
+                Send
+              </Button>
+            </div>
+            <div className="flex justify-center space-x-4">
+              <Button 
+                onClick={handleSelfAssisted} 
+                variant="outline"
+                className="border-wellness-500 text-wellness-600 hover:bg-wellness-50"
+              >
+                Self Assisted
+              </Button>
+              <Button 
+                onClick={handleBookSession} 
+                className="bg-wellness-500 hover:bg-wellness-600"
+              >
+                Book a Session
+              </Button>
+            </div>
           </div>
         )}
       </div>
