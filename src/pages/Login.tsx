@@ -9,17 +9,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/components/ui/use-toast";
 import { LogIn, Mail, Lock, UserPlus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AnimatedGradientText from "@/components/ui/AnimatedGradientText";
 
 const Login = () => {
+  const navigate = useNavigate();
+  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast({
-      title: "Login Attempt",
-      description: "This is a demo. In a real app, this would validate credentials.",
+      title: "Login Successful",
+      description: "You've been redirected to the home page.",
     });
-    // In a real app, this would authenticate the user
+    
+    // Navigate to the main page after login
+    navigate("/");
   };
 
   return (
